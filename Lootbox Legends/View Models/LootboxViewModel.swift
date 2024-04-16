@@ -16,17 +16,8 @@ class LootboxViewModel: ObservableObject {
     var arView: ARView?
     var anchor: AnchorEntity?
     
-    let lootboxTemplate: Entity
-    let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
-    
     init() {
-        lootboxTemplate = try! Entity.load(named: "lootbox")
-        lootboxTemplate.components.set(CollisionComponent(shapes: [.generateBox(width: 0.2, height: 0.13, depth: 0.1)]))
-        
-        var physicsBodyComponent = PhysicsBodyComponent()
-        physicsBodyComponent.massProperties.mass = 0.5
-        physicsBodyComponent.mode = .dynamic
-        lootboxTemplate.components.set(physicsBodyComponent)
+        // TODO: Set up a template lootbox entity in step 1
     }
     
     func setup(in arView: ARView) {
@@ -48,45 +39,12 @@ class LootboxViewModel: ObservableObject {
     }
     
     func addLootbox() {
-        guard let anchor, let arView else {
-            return
-        }
-        
-        let hits = arView.hitTest(arView.center, query: .nearest)
-        guard let hit = hits.first else {
-            showUnableToPlaceMessage = true
-            return
-        }
-        
-        let position = anchor.convert(position: hit.position, from: nil)
-        let lootbox = lootboxTemplate.clone(recursive: true)
-        lootbox.position = position + SIMD3(x: 0, y: 0.5, z: 0)
-        lootbox.components.set(LootboxComponent(requiredTaps: Int.random(in: 2..<11)))
-        anchor.addChild(lootbox)
-        
-        feedbackGenerator.impactOccurred()
+        // TODO: Add a lootbox entity in step 1
+        // TODO: Place the lootbox entity relative to the camera in step 2
+        // TODO: Configure the lootbox with a LootboxComponent in step 3
     }
     
     func handleTap(at position: CGPoint) {
-        guard let arView else {
-            return
-        }
-        
-        let hits = arView.hitTest(position, query: .all)
-        guard let hit = hits.first(where: { $0.entity.components.has(LootboxComponent.self) }) else {
-            return
-        }
-        
-        feedbackGenerator.impactOccurred()
-        
-        var lootboxComponent: LootboxComponent = hit.entity.components[LootboxComponent.self]!
-        lootboxComponent.tapsReceived += 1
-        
-        if lootboxComponent.tapsReceived >= lootboxComponent.requiredTaps {
-            hit.entity.removeFromParent()
-            currentItem = LootboxItem.items.randomElement()
-        } else {
-            hit.entity.components.set(lootboxComponent)
-        }
+        // TODO: Handle user input in step 5
     }
 }

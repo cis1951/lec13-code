@@ -11,8 +11,8 @@ import SwiftUI
 @main
 struct LootboxLegends: App {
     init() {
-        LootboxComponent.registerComponent()
-        LootboxSystem.registerSystem()
+        // TODO: Register LootboxComponent in step 3
+        // TODO: Register LootboxSystem in step 5
     }
     
     var body: some Scene {

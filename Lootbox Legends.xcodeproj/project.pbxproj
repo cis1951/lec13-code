@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		89C119C12BCDD86D003593D6 /* LootboxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C119C02BCDD86D003593D6 /* LootboxComponent.swift */; };
 		89C119C52BCDE6CA003593D6 /* LootboxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C119C42BCDE6CA003593D6 /* LootboxViewModel.swift */; };
 		89C119C72BCE30F0003593D6 /* lootbox.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 89C119C62BCE30F0003593D6 /* lootbox.usdz */; };
-		89C119C92BCE32EE003593D6 /* LootboxSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C119C82BCE32EE003593D6 /* LootboxSystem.swift */; };
 		89C119CB2BCE3471003593D6 /* LootboxItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C119CA2BCE3471003593D6 /* LootboxItem.swift */; };
 		89C119D32BCE36FD003593D6 /* LootboxItemDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C119D22BCE36FD003593D6 /* LootboxItemDetail.swift */; };
 		89C5F4712BCDD660008F8DD4 /* LootboxLegends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C5F4702BCDD660008F8DD4 /* LootboxLegends.swift */; };
@@ -20,10 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		89C119C02BCDD86D003593D6 /* LootboxComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootboxComponent.swift; sourceTree = "<group>"; };
 		89C119C42BCDE6CA003593D6 /* LootboxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootboxViewModel.swift; sourceTree = "<group>"; };
 		89C119C62BCE30F0003593D6 /* lootbox.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = lootbox.usdz; sourceTree = "<group>"; };
-		89C119C82BCE32EE003593D6 /* LootboxSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootboxSystem.swift; sourceTree = "<group>"; };
 		89C119CA2BCE3471003593D6 /* LootboxItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootboxItem.swift; sourceTree = "<group>"; };
 		89C119D22BCE36FD003593D6 /* LootboxItemDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootboxItemDetail.swift; sourceTree = "<group>"; };
 		89C5F46D2BCDD660008F8DD4 /* Lootbox Legends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lootbox Legends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,8 +60,6 @@
 		89C119CE2BCE3489003593D6 /* RealityKit */ = {
 			isa = PBXGroup;
 			children = (
-				89C119C02BCDD86D003593D6 /* LootboxComponent.swift */,
-				89C119C82BCE32EE003593D6 /* LootboxSystem.swift */,
 			);
 			path = RealityKit;
 			sourceTree = "<group>";
@@ -191,8 +185,6 @@
 				89C119D32BCE36FD003593D6 /* LootboxItemDetail.swift in Sources */,
 				89C119CB2BCE3471003593D6 /* LootboxItem.swift in Sources */,
 				89C119C52BCDE6CA003593D6 /* LootboxViewModel.swift in Sources */,
-				89C119C12BCDD86D003593D6 /* LootboxComponent.swift in Sources */,
-				89C119C92BCE32EE003593D6 /* LootboxSystem.swift in Sources */,
 				89C5F4732BCDD660008F8DD4 /* ContentView.swift in Sources */,
 				89C5F4712BCDD660008F8DD4 /* LootboxLegends.swift in Sources */,
 			);
