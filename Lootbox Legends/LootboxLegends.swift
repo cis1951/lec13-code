@@ -12,6 +12,7 @@ import SwiftUI
 struct LootboxLegends: App {
     init() {
         LootboxComponent.registerComponent()
+        LootboxSystem.registerSystem()
     }
     
     var body: some Scene {
