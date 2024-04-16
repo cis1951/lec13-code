@@ -18,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		892202E92BCEFE4800886DC6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		89C119C42BCDE6CA003593D6 /* LootboxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootboxViewModel.swift; sourceTree = "<group>"; };
 		89C119C62BCE30F0003593D6 /* lootbox.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = lootbox.usdz; sourceTree = "<group>"; };
 		89C119CA2BCE3471003593D6 /* LootboxItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootboxItem.swift; sourceTree = "<group>"; };
@@ -75,6 +76,7 @@
 		89C5F4642BCDD660008F8DD4 = {
 			isa = PBXGroup;
 			children = (
+				892202E92BCEFE4800886DC6 /* README.md */,
 				89C5F46F2BCDD660008F8DD4 /* Lootbox Legends */,
 				89C5F46E2BCDD660008F8DD4 /* Products */,
 			);

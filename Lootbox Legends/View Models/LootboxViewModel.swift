@@ -18,6 +18,7 @@ class LootboxViewModel: ObservableObject {
     
     init() {
         // TODO: Set up a template lootbox entity in step 1
+        // TODO: Add collision and physics body components in step 3
     }
     
     func setup(in arView: ARView) {
@@ -41,7 +42,7 @@ class LootboxViewModel: ObservableObject {
     func addLootbox() {
         // TODO: Add a lootbox entity in step 1
         // TODO: Place the lootbox entity relative to the camera in step 2
-        // TODO: Configure the lootbox with a LootboxComponent in step 3
+        // TODO: Configure the lootbox with a LootboxComponent in step 4
     }
     
     func handleTap(at position: CGPoint) {
