@@ -233,7 +233,7 @@ There's only one thing left to do: register the system in `LootboxLegends.swift`
 ```swift
 init() {
     LootboxComponent.registerComponent()
-    LootboxSystem.registerComponent()
+    LootboxSystem.registerSystem()
 }
 ```
 
