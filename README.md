@@ -8,6 +8,13 @@ In this repo, we'll be building a ~~free-to-play interactive experiential game~~
 
 You'll need a physical device to run this app, as it needs to use the camera and motion sensors.
 
+> [!IMPORTANT]
+> To run the app on a physical device, you may need to change the bundle identifier in the project settings to something unique.
+> 
+> You can do this by adding a bunch of random letters/numbers to the bundle identifier, like:
+> 
+> `edu.upenn.seas.cis1951.Lootbox-Legends-SOMETHING-RANDOM-HERE`
+
 Get started by cloning the repo and opening the project in Xcode, then follow along with these steps:
 
 ## Step 1: Add loot boxes
@@ -161,6 +168,7 @@ hit.entity.components[LootboxComponent.self]!.tapsReceived += 1
 Finally, we'll check if the loot box has been tapped enough times to open. If it has, we'll remove the loot box from the scene, and we'll tell the view model to present a random item. Add this code after updating the tap count:
 
 ```swift
+let lootboxComponent: LootboxComponent = hit.entity.components[LootboxComponent.self]!
 if lootboxComponent.tapsReceived >= lootboxComponent.requiredTaps {
     hit.entity.removeFromParent()
     currentItem = LootboxItem.items.randomElement()
