@@ -25,6 +25,8 @@ private let logger = Logger(subsystem: "Lootbox Legends", category: "LootboxView
         
         // TODO: Add collision and physics body components in step 3
         
+        // TODO: Configure the lootbox template with a LootboxComponent in step 4
+        
         // Create horizontal table anchor for the content
         let anchor = AnchorEntity(.plane(.horizontal, classification: .table, minimumBounds: SIMD2<Float>(0.2, 0.2)))
         anchor.components.set(CollisionComponent(shapes: [.generateBox(width: 100, height: 0.001, depth: 100)]))
@@ -43,8 +45,6 @@ private let logger = Logger(subsystem: "Lootbox Legends", category: "LootboxView
         // TODO: Add a lootbox entity in step 1
         
         // TODO: Place the lootbox entity relative to the camera in step 2
-        
-        // TODO: Configure the lootbox with a LootboxComponent in step 4
     }
     
     func handleTap(at position: CGPoint) {
