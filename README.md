@@ -62,7 +62,7 @@ To do this, we'll need to translate the center of the view in 2D space to a 3D p
 Hit testing requires an entity with a `CollisionComponent`, but we've already added one to the `AnchorEntity` representing the table. All that's left for you to do is to do the hit test from the `addLootbox(at:)` method. Add this just before you clone the loot box entity:
 
 ```swift
-let hits = realityViewContent.hitTest(point: position, in: .local, query: .all)
+let hits = realityViewContent.hitTest(point: point, in: .local, query: .all)
 guard let hit = hits.first(where: { $0.entity === anchor }) else {
     showUnableToPlaceMessage = true
     return
