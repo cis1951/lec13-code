@@ -18,9 +18,6 @@ private let logger = Logger(subsystem: "Lootbox Legends", category: "LootboxView
     var realityViewContent: RealityViewCameraContent?
     var anchor: AnchorEntity?
     
-    var lootboxTemplate: Entity?
-    let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
-    
     func setUp(in realityViewContent: RealityViewCameraContent) async {
         self.realityViewContent = realityViewContent
         
@@ -43,10 +40,6 @@ private let logger = Logger(subsystem: "Lootbox Legends", category: "LootboxView
     }
     
     func addLootbox(at point: CGPoint) {
-        guard let anchor, let realityViewContent, let lootboxTemplate else {
-            return
-        }
-        
         // TODO: Add a lootbox entity in step 1
         
         // TODO: Place the lootbox entity relative to the camera in step 2
@@ -55,10 +48,6 @@ private let logger = Logger(subsystem: "Lootbox Legends", category: "LootboxView
     }
     
     func handleTap(at position: CGPoint) {
-        guard let realityViewContent else {
-            return
-        }
-        
         // TODO: Handle user input in step 5
     }
 }

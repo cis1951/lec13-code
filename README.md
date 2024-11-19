@@ -6,7 +6,7 @@ This repo contains the code for **Lecture 13: AR & RealityKit**.
 
 In this repo, we'll be building a ~~free-to-play interactive experiential game~~ an AR app that's entirely placing and opening loot boxes.
 
-You'll need a physical device to run this app, as it needs to use the camera and motion sensors.
+You'll need a physical device with iOS 18 or later to run this app, as it needs to use the camera, motion sensors, and the latest RealityKit APIs.
 
 > [!IMPORTANT]
 > To run the app on a physical device, you may need to change the bundle identifier in the project settings to something unique.
@@ -22,22 +22,27 @@ Get started by cloning the repo and opening the project in Xcode, then follow al
 We'll start by setting up a "template" entity that we can clone to create loot boxes in the scene. Go ahead and add a property to `LootboxViewModel` to store this entity:
 
 ```swift
-let lootboxTemplate: Entity
+var lootboxTemplate: Entity?
 ```
 
-Now, let's set up the template entity when the view model initializes. We've already included a 3D model called `lootbox.usdz`, which we'll load into a new entity in the `init()` initializer:
+Now, let's set up the template entity when the view model initializes. We've already included a 3D model called `lootbox.usdz`, which we'll load into a new entity in the `setUp(in:)` method:
 
 ```swift
-init() {
-    lootboxTemplate = try! Entity.load(named: "lootbox")
+func setUp(in realityViewContent: RealityViewCameraContent) async {
+    self.realityViewContent = realityViewContent
+    
+    let lootboxTemplate = try! await ModelEntity(named: "lootbox")
+    self.lootboxTemplate = lootboxTemplate
+    
+    // ...
 }
 ```
 
-We'll want to clone this entity and place it in the scene whenever the user taps **Tap to add loot box**. To do so, add this code to the `addLootbox()` method:
+We'll want to clone this entity and place it in the scene whenever the user taps **Tap to add loot box**. To do so, add this code to the `addLootbox(at:)` method:
 
 ```swift
-func addLootbox() {
-    guard let anchor, let arView else {
+func addLootbox(at point: CGPoint) {
+    guard let anchor, let realityViewContent, let lootboxTemplate else {
         return
     }
 
@@ -52,19 +57,19 @@ Run the app, aim your phone at a table, and tap the button to add a loot box to 
 
 Our app is looking good so far, but we're only placing loot boxes in a fixed location that the user can't control. Let's change that by placing the loot box in the center of the view, based on whereever the camera is.
 
-To do this, we'll need to translate the center of the view in 2D space to a 3D point in the scene. There are many ways to do this (such as `unproject()` or `ray()`), but we'll go with a hit-testing method. Namely, we'll ask ARKit to cast a ray from the center of the screen and see what it hits.
+To do this, we'll need to translate the center of the view in 2D space to a 3D point in the scene. There are many ways to do this (such as `unproject()` or `ray()`), but we'll go with a hit-testing method. Namely, we'll ask RealityKit to cast a ray from the center of the screen and see where it hits the table.
 
-Hit testing requires an entity with a `CollisionComponent`, but we've already added one to the `AnchorEntity` representing the table. All that's left for you to do is to do the hit test from the `addLootbox()` method. Add this just before you clone the loot box entity:
+Hit testing requires an entity with a `CollisionComponent`, but we've already added one to the `AnchorEntity` representing the table. All that's left for you to do is to do the hit test from the `addLootbox(at:)` method. Add this just before you clone the loot box entity:
 
 ```swift
-let hits = arView.hitTest(arView.center, query: .nearest)
-guard let hit = hits.first else {
+let hits = realityViewContent.hitTest(point: position, in: .local, query: .all)
+guard let hit = hits.first(where: { $0.entity === anchor }) else {
     showUnableToPlaceMessage = true
     return
 }
 ```
 
-Here, we ask the scene for the nearest object at the cneter of the screen. If we can't find anything, we'll ask our view to display an error message. If we do find something, we'll convert the hit position from the scene's coordinate space to the anchor's coordinate space:
+Here, we ask the scene for the all the entities at the center of the screen, and we check to see if any of them are the table. If not, we'll ask our view to display an error message. But if we do find the table, we'll convert the hit position from the scene's coordinate space to the anchor's coordinate space:
 
 ```swift
 let position = anchor.convert(position: hit.position, from: nil)
@@ -84,16 +89,18 @@ Let's make our loot boxes a little more interesting with physics! Whenever we ad
 
 To add physics to an entity, we need two components: a `CollisionComponent` and a `PhysicsBodyComponent`. As you've already seen, the former lets entities detect collisions, while the latter lets entities respond to physics.
 
-We've already added these two to the table `AnchorEntity`, but we haven't yet added them to the loot box. Go ahead and update `init()` to add them:
+We've already added these two to the table `AnchorEntity`, but we haven't yet added them to the loot box. Go ahead and update `setUp(in:)` to add them:
 
 ```swift
-lootboxTemplate = try! Entity.load(named: "lootbox")
+let lootboxTemplate = try! await ModelEntity(named: "lootbox")
+self.lootboxTemplate = lootboxTemplate
+
 lootboxTemplate.components.set(CollisionComponent(shapes: [.generateBox(width: 0.2, height: 0.13, depth: 0.1)]))
 
-var physicsBodyComponent = PhysicsBodyComponent()
-physicsBodyComponent.massProperties.mass = 0.5
-physicsBodyComponent.mode = .dynamic
-lootboxTemplate.components.set(physicsBodyComponent)
+var lootboxPhysicsBodyComponent = PhysicsBodyComponent()
+lootboxPhysicsBodyComponent.massProperties.mass = 0.5
+lootboxPhysicsBodyComponent.mode = .dynamic
+lootboxTemplate.components.set(lootboxPhysicsBodyComponent)
 ```
 
 Next, whenever we add a loot box, we'll place it a little above the target position and let gravity do the rest. Update the `addLootbox()` method to add a small offset to the position:
@@ -138,7 +145,7 @@ init() {
 }
 ```
 
-Finally, let's add this component to our loot box template. Update `init()` in `LootboxViewModel.swift` like this:
+Finally, let's add this component to our loot box template. Update `setUp(at:)` in `LootboxViewModel.swift` like this:
 
 ```swift
 lootboxTemplate.components.set(LootboxComponent(requiredTaps: 5))
@@ -149,11 +156,11 @@ lootboxTemplate.components.set(LootboxComponent(requiredTaps: 5))
 To actually interact with the loot boxes, we'll need to detect when the user taps on them. This is a little harder than a 2D environment -- yet again, you need to somehow convert a 2D tap to a 3D position in the scene. Luckily, we can use hit testing again to find entities at the tap location, then identify the nearest one with a `LootboxComponent`. Start by adding this code to `handleTap()`:
 
 ```swift
-guard let arView else {
+guard let realityViewContent else {
     return
 }
 
-let hits = arView.hitTest(position, query: .all)
+let hits = realityViewContent.hitTest(point: position, in: .local, query: .all)
 guard let hit = hits.first(where: { $0.entity.components.has(LootboxComponent.self) }) else {
     return
 }
