@@ -6,46 +6,59 @@
 //
 
 import SwiftUI
-import ARKit
 import RealityKit
+import OSLog
 
-class LootboxViewModel: ObservableObject {
-    @Published var currentItem: LootboxItem?
-    @Published var showUnableToPlaceMessage = false
+private let logger = Logger(subsystem: "Lootbox Legends", category: "LootboxViewModel")
+
+@Observable @MainActor class LootboxViewModel {
+    var currentItem: LootboxItem?
+    var showUnableToPlaceMessage = false
     
-    var arView: ARView?
+    var realityViewContent: RealityViewCameraContent?
     var anchor: AnchorEntity?
     
-    init() {
-        // TODO: Set up a template lootbox entity in step 1
-        // TODO: Add collision and physics body components in step 3
-    }
+    var lootboxTemplate: Entity?
+    let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     
-    func setup(in arView: ARView) {
-        self.arView = arView
+    func setUp(in realityViewContent: RealityViewCameraContent) async {
+        self.realityViewContent = realityViewContent
+        
+        // TODO: Set up a template lootbox entity in step 1
+        
+        // TODO: Add collision and physics body components in step 3
         
         // Create horizontal table anchor for the content
         let anchor = AnchorEntity(.plane(.horizontal, classification: .table, minimumBounds: SIMD2<Float>(0.2, 0.2)))
         anchor.components.set(CollisionComponent(shapes: [.generateBox(width: 100, height: 0.001, depth: 100)]))
         
         // Add a physics body for the table
-        var physicsBodyComponent = PhysicsBodyComponent()
-        physicsBodyComponent.mode = .static
-        anchor.components.set(physicsBodyComponent)
+        var tablePhysicsBodyComponent = PhysicsBodyComponent()
+        tablePhysicsBodyComponent.mode = .static
+        anchor.components.set(tablePhysicsBodyComponent)
         
         // Add the anchor to the scene and view model
-        arView.scene.anchors.append(anchor)
-        arView.physicsOrigin = anchor
+        realityViewContent.entities.append(anchor)
         self.anchor = anchor
     }
     
-    func addLootbox() {
+    func addLootbox(at point: CGPoint) {
+        guard let anchor, let realityViewContent, let lootboxTemplate else {
+            return
+        }
+        
         // TODO: Add a lootbox entity in step 1
+        
         // TODO: Place the lootbox entity relative to the camera in step 2
+        
         // TODO: Configure the lootbox with a LootboxComponent in step 4
     }
     
     func handleTap(at position: CGPoint) {
+        guard let realityViewContent else {
+            return
+        }
+        
         // TODO: Handle user input in step 5
     }
 }
