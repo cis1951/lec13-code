@@ -10,7 +10,7 @@ import AppleProductTypes
 let package = Package(
     name: "Lootbox Legends",
     platforms: [
-        .iOS("16.0")
+        .iOS("18.0")
     ],
     products: [
         .iOSApplication(
@@ -40,5 +40,5 @@ let package = Package(
             path: "."
         )
     ],
-    swiftLanguageVersions: [.version("6")]
+    swiftLanguageVersions: [.v5]
 )
