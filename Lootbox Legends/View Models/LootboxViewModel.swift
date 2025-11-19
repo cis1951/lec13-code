@@ -8,6 +8,7 @@
 import SwiftUI
 import RealityKit
 import OSLog
+import FoundationModels
 
 private let logger = Logger(subsystem: "Lootbox Legends", category: "LootboxViewModel")
 
@@ -86,9 +87,30 @@ private let logger = Logger(subsystem: "Lootbox Legends", category: "LootboxView
         
         if lootboxComponent.tapsReceived >= lootboxComponent.requiredTaps {
             hit.entity.removeFromParent()
-            currentItem = LootboxItem.items.randomElement()
+            startGeneratingLootboxContent()
         } else {
             hit.entity.components.set(lootboxComponent)
         }
+    }
+    
+    func startGeneratingLootboxContent() {
+        let item = LootboxItem()
+        
+        guard #available(iOS 26.0, *), SystemLanguageModel.default.isAvailable else {
+            item.content = LootboxItemContent.items.randomElement()!
+            currentItem = item
+            return
+        }
+        
+        Task {
+            do {
+                item.content = try await LootboxItemContent.generate()
+            } catch {
+                logger.error("Couldn't generate lootbox content: \(error)")
+                item.content = LootboxItemContent.items.randomElement()!
+            }
+        }
+        
+        currentItem = item
     }
 }
