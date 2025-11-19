@@ -15,6 +15,7 @@
 		89C5F4732BCDD660008F8DD4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C5F4722BCDD660008F8DD4 /* ContentView.swift */; };
 		89C5F4752BCDD662008F8DD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89C5F4742BCDD662008F8DD4 /* Assets.xcassets */; };
 		89C5F4782BCDD662008F8DD4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89C5F4772BCDD662008F8DD4 /* Preview Assets.xcassets */; };
+		89E49B022ECE4DD400C1F05F /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 89E49B012ECE4DD400C1F05F /* AppIcon.icon */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		89C5F4722BCDD660008F8DD4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		89C5F4742BCDD662008F8DD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89C5F4772BCDD662008F8DD4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		89E49B012ECE4DD400C1F05F /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				89C119CE2BCE3489003593D6 /* RealityKit */,
 				89C5F4742BCDD662008F8DD4 /* Assets.xcassets */,
 				89C119C62BCE30F0003593D6 /* lootbox.usdz */,
+				89E49B012ECE4DD400C1F05F /* AppIcon.icon */,
 				89C5F4762BCDD662008F8DD4 /* Preview Content */,
 			);
 			path = "Lootbox Legends";
@@ -172,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89C5F4782BCDD662008F8DD4 /* Preview Assets.xcassets in Resources */,
+				89E49B022ECE4DD400C1F05F /* AppIcon.icon in Resources */,
 				89C119C72BCE30F0003593D6 /* lootbox.usdz in Resources */,
 				89C5F4752BCDD662008F8DD4 /* Assets.xcassets in Resources */,
 			);
@@ -322,7 +326,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lootbox Legends/Preview Content\"";
-				DEVELOPMENT_TEAM = 9G475R3MEF;
+				DEVELOPMENT_TEAM = VU59R57FGM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -358,7 +362,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lootbox Legends/Preview Content\"";
-				DEVELOPMENT_TEAM = 9G475R3MEF;
+				DEVELOPMENT_TEAM = VU59R57FGM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
