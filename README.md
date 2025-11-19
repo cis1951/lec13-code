@@ -178,7 +178,7 @@ Finally, we'll check if the loot box has been tapped enough times to open. If it
 let lootboxComponent: LootboxComponent = hit.entity.components[LootboxComponent.self]!
 if lootboxComponent.tapsReceived >= lootboxComponent.requiredTaps {
     hit.entity.removeFromParent()
-    currentItem = LootboxItem.items.randomElement()
+    startGeneratingLootboxContent()
 }
 ```
 
