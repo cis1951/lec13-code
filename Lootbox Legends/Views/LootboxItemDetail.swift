@@ -13,25 +13,30 @@ struct LootboxItemDetail: View {
     
     var body: some View {
         VStack(spacing: 16) {
-            Text(item.emoji)
-                .font(.system(size: 128))
-                .padding(.bottom)
-            
-            Text("You got \(item.title)!")
-                .font(.title)
+            if let content = item.content {
+                Text(content.emoji)
+                    .font(.system(size: 128))
+                    .padding(.bottom)
+                
+                Text("You got \(content.title)!")
+                    .font(.title)
+                    .fontWeight(.bold)
+                
+                Text(content.description)
+                    .foregroundStyle(.secondary)
+                    .italic()
+                    .padding(.bottom)
+                
+                Button("Accept") {
+                    onClose()
+                }
+                .controlSize(.large)
                 .fontWeight(.bold)
-            
-            Text(item.description)
-                .foregroundStyle(.secondary)
-                .italic()
-                .padding(.bottom)
-            
-            Button("Accept") {
-                onClose()
+                .buttonStyle(BorderedProminentButtonStyle())
+            } else {
+                ProgressView()
+                    .controlSize(.extraLarge)
             }
-            .controlSize(.large)
-            .fontWeight(.bold)
-            .buttonStyle(BorderedProminentButtonStyle())
         }
         .frame(maxWidth: 400)
         .padding()
@@ -40,5 +45,5 @@ struct LootboxItemDetail: View {
 }
 
 #Preview {
-    LootboxItemDetail(item: .items[0]) {}
+    LootboxItemDetail(item: .init(.items[0])) {}
 }

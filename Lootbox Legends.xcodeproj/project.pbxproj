@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8923A7322ECE74F600FEA076 /* LootboxItem+AI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8923A7312ECE74F600FEA076 /* LootboxItem+AI.swift */; };
 		89C119C52BCDE6CA003593D6 /* LootboxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C119C42BCDE6CA003593D6 /* LootboxViewModel.swift */; };
 		89C119C72BCE30F0003593D6 /* lootbox.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 89C119C62BCE30F0003593D6 /* lootbox.usdz */; };
 		89C119CB2BCE3471003593D6 /* LootboxItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C119CA2BCE3471003593D6 /* LootboxItem.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		892202E92BCEFE4800886DC6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		8923A7312ECE74F600FEA076 /* LootboxItem+AI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LootboxItem+AI.swift"; sourceTree = "<group>"; };
 		89C119C42BCDE6CA003593D6 /* LootboxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootboxViewModel.swift; sourceTree = "<group>"; };
 		89C119C62BCE30F0003593D6 /* lootbox.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = lootbox.usdz; sourceTree = "<group>"; };
 		89C119CA2BCE3471003593D6 /* LootboxItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootboxItem.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				89C119CA2BCE3471003593D6 /* LootboxItem.swift */,
+				8923A7312ECE74F600FEA076 /* LootboxItem+AI.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				89C119CB2BCE3471003593D6 /* LootboxItem.swift in Sources */,
 				89C119C52BCDE6CA003593D6 /* LootboxViewModel.swift in Sources */,
 				89C5F4732BCDD660008F8DD4 /* ContentView.swift in Sources */,
+				8923A7322ECE74F600FEA076 /* LootboxItem+AI.swift in Sources */,
 				89C5F4712BCDD660008F8DD4 /* LootboxLegends.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
