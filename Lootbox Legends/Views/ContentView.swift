@@ -30,7 +30,7 @@ struct ContentView : View {
                 .fontWeight(.bold)
                 .controlSize(.large)
                 .frame(maxHeight: .infinity, alignment: .bottom)
-                .buttonStyle(BorderedProminentButtonStyle())
+                .glassOrProminentButtonStyle()
                 .padding(.bottom, 48)
                 
                 Text("Try aiming your device at a table")
@@ -62,6 +62,24 @@ struct ContentView : View {
             }
         }
         .edgesIgnoringSafeArea(.all)
+    }
+}
+
+struct GlassOrProminentButtonStyleModifier: ViewModifier {
+    @ViewBuilder func body(content: Content) -> some View {
+        if #available(iOS 26.0, *) {
+            content
+                .buttonStyle(.glass)
+        } else {
+            content
+                .buttonStyle(.borderedProminent)
+        }
+    }
+}
+
+extension View {
+    func glassOrProminentButtonStyle() -> some View {
+        modifier(GlassOrProminentButtonStyleModifier())
     }
 }
 
